@@ -395,6 +395,125 @@ export const asyncRoutes = [
             }
         ]
     },
+    {
+        path: '/userlist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/userlist/index'),
+                /*名字没影响*/
+                name: 'userlist_',
+                meta: { title: 'Userlist', icon: 'clipboard' }
+            }
+        ]
+    },
+
+    {
+        path: '/markdown',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/markdown/index'),
+                /*名字没影响*/
+                name: 'markdown',
+                meta: { title: 'markdown', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/markdownlist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/markdownlist/index'),
+                /*名字没影响*/
+                name: 'markdownlist',
+                meta: { title: 'markdownlist', icon: 'clipboard' }
+            }
+        ]
+    },
+
+    {
+        path: '/editor',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/editor/index'),
+                /*名字没影响*/
+                name: 'editor',
+                meta: { title: 'editor', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/editorlist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/editorlist/index'),
+                /*名字没影响*/
+                name: 'editorlist',
+                meta: { title: 'editorlist', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/index',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/index/index'),
+                /*名字没影响*/
+                name: 'index',
+                meta: { title: 'index', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/loginloglist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/loginloglist/index'),
+                /*名字没影响*/
+                name: 'index',
+                meta: { title: 'loginloglist', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/logoutloglist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/logoutloglist/index'),
+                /*名字没影响*/
+                name: 'index',
+                meta: { title: 'logoutloglist', icon: 'clipboard' }
+            }
+        ]
+    },
+    {
+        path: '/ainotelist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/ainotelist/index'),
+                /*名字没影响*/
+                name: 'index',
+                meta: { title: 'ainotelist', icon: 'clipboard' }
+            }
+        ]
+    },
 
     // 404 page must be placed at the end !!!
     { path: '*', redirect: '/404', hidden: true }
