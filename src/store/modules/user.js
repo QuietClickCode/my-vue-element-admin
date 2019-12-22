@@ -44,9 +44,22 @@ const actions = {
                 reject(error)
             })*/
             login(userInfo).then(response => {
-                const { data } = response.data
+                /*const { data } = response.data
                 commit('SET_TOKEN', data.token)
-                setToken(data.token)
+                setToken(data.token)*/
+                /*{
+                    roles: ['admin'],
+                        introduction: 'I am a super administrator',
+                    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+                    name: 'Super Admin'
+                }*/
+                commit('SET_TOKEN', response.msg)
+                commit('SET_ROLES', ['admin'])
+                commit('SET_NAME', "Super Admin")
+                commit('SET_AVATAR', "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif")
+                commit('SET_INTRODUCTION', "I am a super administrator")
+                setToken(response.msg)
+
                 resolve()
             }).catch(error => {
                 reject(error)

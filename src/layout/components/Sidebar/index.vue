@@ -23,7 +23,7 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
-
+import Layout from '@/layout'
 export default {
   components: { SidebarItem, Logo },
   computed: {
@@ -31,7 +31,7 @@ export default {
       'permission_routes',
       'sidebar'
     ]),
-    activeMenu() {
+    /*activeMenu() {
       const route = this.$route
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
@@ -39,6 +39,43 @@ export default {
         return meta.activeMenu
       }
       return path
+    },*/
+    activeMenu() {
+      const route = [{
+          path: '/example',
+          component: Layout,
+          redirect: '/example/list',
+          name: 'Example',
+          /*meta: {
+              title: 'Example',
+              icon: 'example'
+          },*/
+          meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+          children: [
+              {
+                  path: 'create',
+                  component: () => import('@/views/example/create'),
+                  name: 'CreateArticle',
+                  meta: { title: 'Create Article', icon: 'edit' }
+              },
+              {
+                  path: 'edit/:id(\\d+)',
+                  component: () => import('@/views/example/edit'),
+                  name: 'EditArticle',
+                  meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+                  hidden: true
+              },
+              {
+                  path: 'list',
+                  component: () => import('@/views/example/list'),
+                  name: 'ArticleList',
+                  meta: { title: 'Article List', icon: 'list' }
+              }
+          ]
+      }]
+      const { meta, path } = route
+      // if set path, the sidebar will highlight the path you set
+        return "/example/list"
     },
     showLogo() {
       return this.$store.state.settings.sidebarLogo
