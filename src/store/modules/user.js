@@ -11,6 +11,7 @@ const state = {
 }
 
 const mutations = {
+<<<<<<< Updated upstream
   SET_TOKEN: (state, token) => {
     state.token = token
   },
@@ -26,6 +27,24 @@ const mutations = {
   SET_ROLES: (state, roles) => {
     state.roles = roles
   }
+=======
+    SET_TOKEN: (state, token) => {
+        state.token = token
+    },
+    SET_INTRODUCTION: (state, introduction) => {
+        state.introduction = introduction
+    },
+    SET_NAME: (state, name) => {
+        state.name = name
+    },
+    SET_AVATAR: (state, avatar) => {
+        state.avatar = avatar
+    },
+    SET_ROLES: (state, roles) => {
+        console.log(JSON.stringify(roles));
+        state.roles = roles.roles
+    }
+>>>>>>> Stashed changes
 }
 
 const actions = {
