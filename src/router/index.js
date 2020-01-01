@@ -122,6 +122,7 @@ export const constantRoutes = [
       }
     ]
   }
+
 ]
 
 /**
@@ -129,6 +130,18 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
   {
     path: '/permission',
     component: Layout,
@@ -167,19 +180,6 @@ export const asyncRoutes = [
           title: 'Role Permission',
           roles: ['admin']
         }
-      }
-    ]
-  },
-
-  {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
       }
     ]
   },
@@ -373,7 +373,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: 'external-link',
+    path: '/external-link',
     component: Layout,
     children: [
       {
@@ -383,6 +383,54 @@ export const asyncRoutes = [
     ]
   },
 
+  {
+    path: '/markdown',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/markdown/index'),
+        name: 'markdown',
+        meta: { title: 'markdown', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/markdownlist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/markdownlist/index'),
+        name: 'markdownlist',
+        meta: { title: 'markdownlist', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/ainotelist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ainotelist/index'),
+        name: 'ainotelist',
+        meta: { title: 'ainotelist', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/systemloglist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/systemloglist/index'),
+        name: 'systemloglist',
+        meta: { title: 'systemloglist', icon: 'clipboard' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
@@ -390,13 +438,13 @@ export const asyncRoutes = [
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+  routes: constantRoutes.concat(asyncRoutes)
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
+export function resetRouter () {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }

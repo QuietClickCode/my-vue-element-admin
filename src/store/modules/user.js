@@ -4,10 +4,10 @@ import router, { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
-  name: '',
-  avatar: '',
-  introduction: '',
-  roles: []
+  roles: ['admin'],
+  introduction: 'I am a super administrator',
+  avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+  name: 'Super Admin',
 }
 
 const mutations = {
@@ -30,13 +30,34 @@ const mutations = {
 
 const actions = {
   // user login
-  login({ commit }, userInfo) {
+  login ({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      /*login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })*/
+      login({
+        'user': { 'username': 'zjj', 'password': '123456' },
+        'location': ['125.84.179.42', '重庆市重庆市', 29.56471, 106.55073],
+        'browserInfo': ['Win10', 'chrome', '74.0.3729.131'],
+        'pcOrPhone': 'pc端',
+        'localIp': '192.168.0.110'
+      }).then(response => {
+        /*const { data } = response
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()*/
+        /*const { data } = response
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()*/
+        commit('SET_TOKEN', response.msg)
+        setToken(response.msg)
         resolve()
       }).catch(error => {
         reject(error)
@@ -45,7 +66,7 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo ({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
@@ -73,7 +94,7 @@ const actions = {
   },
 
   // user logout
-  logout({ commit, state }) {
+  logout ({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
         commit('SET_TOKEN', '')
@@ -88,7 +109,7 @@ const actions = {
   },
 
   // remove token
-  resetToken({ commit }) {
+  resetToken ({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
       commit('SET_ROLES', [])
@@ -98,7 +119,7 @@ const actions = {
   },
 
   // dynamically modify permissions
-  changeRoles({ commit, dispatch }, role) {
+  changeRoles ({ commit, dispatch }, role) {
     return new Promise(async resolve => {
       const token = role + '-token'
 
