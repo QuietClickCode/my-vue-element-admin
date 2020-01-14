@@ -48,7 +48,6 @@ export function mockXHR() {
       return Mock.mock(result)
     }
   }
-
   for (const i of mocks) {
     Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressReqWrap(i.response))
   }
@@ -61,6 +60,7 @@ const responseFake = (url, type, respond) => {
     type: type || 'get',
     response(req, res) {
       res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+
     }
   }
 }

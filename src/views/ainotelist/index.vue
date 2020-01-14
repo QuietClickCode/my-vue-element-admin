@@ -174,7 +174,11 @@ export default {
     methods: {
         init: function () {
             var vueThis = this
+<<<<<<< HEAD
             axios.post('/api'+'/queryBrowser', {
+=======
+            axios.post('/queryBrowser', {
+>>>>>>> Branch_624c435d
             })
                 .then(function (response) {
                     vueThis.browser = response.data
@@ -182,7 +186,11 @@ export default {
                 .catch(function (error) {
                     console.log(error)
                 })
+<<<<<<< HEAD
             axios.post('/api'+'/querySystem', {
+=======
+            axios.post('/querySystem', {
+>>>>>>> Branch_624c435d
             })
                 .then(function (response) {
                     vueThis.system = response.data
@@ -190,7 +198,11 @@ export default {
                 .catch(function (error) {
                     console.log(error)
                 })
+<<<<<<< HEAD
             axios.post('/api'+'/queryDevice', {
+=======
+            axios.post('/queryDevice', {
+>>>>>>> Branch_624c435d
             })
                 .then(function (response) {
                     vueThis.device = response.data
@@ -207,7 +219,11 @@ export default {
         query: function () {
             var vueThis = this
             axios({
+<<<<<<< HEAD
                 url: '/api'+"/queryAiNote",
+=======
+                url: "/queryAiNote",
+>>>>>>> Branch_624c435d
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -220,7 +236,11 @@ export default {
                     console.log(error)
                 })
             axios({
+<<<<<<< HEAD
                 url:'/api'+ "/queryAiNoteCount",
+=======
+                url: "/queryAiNoteCount",
+>>>>>>> Branch_624c435d
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -237,7 +257,11 @@ export default {
             vueThis.queryForm.startpage = 0;
             vueThis.currentpage = 1;
             axios({
+<<<<<<< HEAD
                 url: '/api'+'/queryAiNote',
+=======
+                url: '/queryAiNote',
+>>>>>>> Branch_624c435d
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -248,7 +272,11 @@ export default {
                     console.log(vueThis.items + '-=================')
                 })
             axios({
+<<<<<<< HEAD
                 url: '/api'+'/queryAiNoteCount',
+=======
+                url: '/queryAiNoteCount',
+>>>>>>> Branch_624c435d
                 method: 'post',
                 data: vueThis.queryForm,
             })

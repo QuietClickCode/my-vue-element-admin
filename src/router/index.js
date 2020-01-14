@@ -39,6 +39,7 @@ import nestedRouter from './modules/nested'
  * all roles can be accessed
  */
 export const constantRoutes = [
+<<<<<<< HEAD
     {
         path: '/redirect',
         component: Layout,
@@ -122,6 +123,92 @@ export const constantRoutes = [
             }
         ]
     }
+=======
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/auth-redirect',
+    component: () => import('@/views/login/auth-redirect'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/error-page/401'),
+    hidden: true
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/documentation',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/documentation/index'),
+        name: 'Documentation',
+        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/guide',
+    component: Layout,
+    redirect: '/guide/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/guide/index'),
+        name: 'Guide',
+        meta: { title: 'Guide', icon: 'guide', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  }
+
+>>>>>>> Branch_624c435d
 ]
 
 /**
@@ -129,12 +216,61 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+<<<<<<< HEAD
     {
         path: '/permission',
         component: Layout,
         redirect: '/permission/page',
         alwaysShow: true, // will always show the root menu
         name: 'Permission',
+=======
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/page',
+    alwaysShow: true, // will always show the root menu
+    name: 'Permission',
+    meta: {
+      title: 'Permission',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'page',
+        component: () => import('@/views/permission/page'),
+        name: 'PagePermission',
+        meta: {
+          title: 'Page Permission',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'directive',
+        component: () => import('@/views/permission/directive'),
+        name: 'DirectivePermission',
+        meta: {
+          title: 'Directive Permission'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/permission/role'),
+        name: 'RolePermission',
+>>>>>>> Branch_624c435d
         meta: {
             title: 'Permission',
             icon: 'lock',
@@ -171,6 +307,7 @@ export const asyncRoutes = [
         ]
     },
 
+<<<<<<< HEAD
     {
         path: '/icon',
         component: Layout,
@@ -189,6 +326,13 @@ export const asyncRoutes = [
     chartsRouter,
     nestedRouter,
     tableRouter,
+=======
+  /** when your routing map is too long, you can split it into small modules **/
+  componentsRouter,
+  chartsRouter,
+  nestedRouter,
+  tableRouter,
+>>>>>>> Branch_624c435d
 
     {
         path: '/example',
@@ -372,6 +516,7 @@ export const asyncRoutes = [
         ]
     },
 
+<<<<<<< HEAD
     {
         path: 'external-link',
         component: Layout,
@@ -523,14 +668,88 @@ const createRouter = () => new Router({
     // mode: 'history', // require service support
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes
+=======
+  {
+    path: '/external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://github.com/PanJiaChen/vue-element-admin',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: '/markdown',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/markdown/index'),
+        name: 'markdown',
+        meta: { title: 'markdown', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/markdownlist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/markdownlist/index'),
+        name: 'markdownlist',
+        meta: { title: 'markdownlist', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/ainotelist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ainotelist/index'),
+        name: 'ainotelist',
+        meta: { title: 'ainotelist', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
+    path: '/systemloglist',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/systemloglist/index'),
+        name: 'systemloglist',
+        meta: { title: 'systemloglist', icon: 'clipboard' }
+      }
+    ]
+  },
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes.concat(asyncRoutes)
+>>>>>>> Branch_624c435d
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter () {
+<<<<<<< HEAD
     const newRouter = createRouter()
     router.matcher = newRouter.matcher // reset router
+=======
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+>>>>>>> Branch_624c435d
 }
 
 export default router

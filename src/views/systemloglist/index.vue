@@ -300,6 +300,10 @@ export default {
                 method: 'post',
                 data:vueThis.data.queryForm,
             }).then(function (response) {
+<<<<<<< HEAD
+=======
+              console.log(response)
+>>>>>>> Branch_624c435d
                 vueThis.data.items = response
             })
                 .catch(function (error) {

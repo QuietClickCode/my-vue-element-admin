@@ -521,5 +521,6 @@ export const asyncRoutes = [
     ]
   },
 
+
   { path: '*', redirect: '/404', hidden: true }
 ]

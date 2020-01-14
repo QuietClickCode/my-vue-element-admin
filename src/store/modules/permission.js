@@ -35,13 +35,15 @@ export function filterAsyncRoutes (routes, roles) {
 }
 
 const state = {
-  routes: [],
-  addRoutes: []
+  /*routes: [],*/
+  routes: asyncRoutes,
+  /*addRoutes: []*/
+  addRoutes: constantRoutes.concat(asyncRoutes)
 }
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
-    state.addRoutes = routes
+    state.addRoutes = constantRoutes.concat(routes)
     state.routes = constantRoutes.concat(routes)
   }
 }
