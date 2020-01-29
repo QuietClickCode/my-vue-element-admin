@@ -283,7 +283,7 @@ export default {
                     console.log(error)
                 })
             /*axios({
-                url:'/api'+ '/deletemarkdown',
+                url:'https://114.55.94.186'+ '/deletemarkdown',
                 method: 'post',
                 data: {
                     'id': vueThis.currentRow.id
@@ -303,7 +303,7 @@ export default {
         updatemarkdown: function () {
             var vueThis = this
             /*axios({
-                url: '/api'+'/updatemarkdown',
+                url: 'https://114.55.94.186'+'/updatemarkdown',
                 method: 'post',
                 data: {
                     'title': vueThis.updatemarkdowndetailtitle,
@@ -371,21 +371,21 @@ export default {
         init: function () {
             var vueThis = this
 
-            axios.post('/api'+'/queryBrowser', {})
+            axios.post('https://114.55.94.186'+'/queryBrowser', {})
                 .then(function (response) {
                     vueThis.browser = response.data
                 })
                 .catch(function (error) {
                     console.log(error)
                 })
-            axios.post('/api'+'/querySystem', {})
+            axios.post('https://114.55.94.186'+'/querySystem', {})
                 .then(function (response) {
                     vueThis.system = response.data
                 })
                 .catch(function (error) {
                     console.log(error)
                 })
-            axios.post('/api'+'/queryDevice', {})
+            axios.post('https://114.55.94.186'+'/queryDevice', {})
                 .then(function (response) {
                     vueThis.device = response.data
                 })
@@ -411,7 +411,7 @@ export default {
                     console.log(error)
                 })
             /*axios({
-                url:'/api'+'/queryMarkdownList',
+                url:'https://114.55.94.186'+'/queryMarkdownList',
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -433,7 +433,7 @@ export default {
                     console.log(error)
                 })
             /*axios({
-                url: '/api'+'/queryMarkdownListCount',
+                url: 'https://114.55.94.186'+'/queryMarkdownListCount',
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -471,7 +471,7 @@ export default {
                     console.log(error)
                 })
            /* axios({
-                url: '/api'+'/queryMarkdownList',
+                url: 'https://114.55.94.186'+'/queryMarkdownList',
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -482,7 +482,7 @@ export default {
                     console.log(vueThis.items + '-=================')
                 })
             axios({
-                url: '/api'+'/queryMarkdownListCount',
+                url: 'https://114.55.94.186'+'/queryMarkdownListCount',
                 method: 'post',
                 data: vueThis.queryForm,
             })

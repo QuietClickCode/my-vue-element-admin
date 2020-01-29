@@ -162,7 +162,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'get',
-                url: '/api' + '/s?wd=' + keyword + '&pn=' + page
+                url: 'https://114.55.94.186' + '/s?wd=' + keyword + '&pn=' + page
             })
                 .then(function (response) {
                     vueThis.data = response.data.data.list
@@ -183,7 +183,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'get',
-                url: '/api' + '/s' + '?wd=' + keyword + '&pn=' + page
+                url: 'https://114.55.94.186' + '/s' + '?wd=' + keyword + '&pn=' + page
             })
                 .then(function (response) {
                     vueThis.data = response.data.data.list
@@ -204,7 +204,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'get',
-                url: '/api' + '/' + vueThis.searchurl + '?wd=' + keyword + '&pn=' + page
+                url: 'https://114.55.94.186' + '/' + vueThis.searchurl + '?wd=' + keyword + '&pn=' + page
             })
                 .then(function (response) {
                     vueThis.articleCurrentPage = page
@@ -226,7 +226,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'get',
-                url: '/api' + '/' + vueThis.searchurl + '?wd=' + keyword + '&pn=' + page
+                url: 'https://114.55.94.186' + '/' + vueThis.searchurl + '?wd=' + keyword + '&pn=' + page
             })
                 .then(function (response) {
                     vueThis.articleCurrentPage = page
@@ -272,7 +272,7 @@ export default {
                             'Content-Type': 'application/json'
                         },
                         method: 'post',
-                        url: '/api' + '/note',
+                        url: 'https://114.55.94.186' + '/note',
                         data: JSON.stringify({
                             'content': keyword.substring(1)
                         }),
@@ -307,7 +307,7 @@ export default {
                                 'Content-Type': 'application/json'
                             },
                             method: 'get',
-                            url: '/api' + '/searchjianshu?wd=' + articlesearchkeyword
+                            url: 'https://114.55.94.186' + '/searchjianshu?wd=' + articlesearchkeyword
                         }).then(function (response) {
                             vueThis.articledata = response.data.data.list
                             vueThis.articleresult = response.data.data
@@ -328,7 +328,7 @@ export default {
                                 'Content-Type': 'application/json'
                             },
                             method: 'get',
-                            url: '/api' + '/searchcsdn?wd=' + articlesearchkeyword
+                            url: 'https://114.55.94.186' + '/searchcsdn?wd=' + articlesearchkeyword
                         }).then(function (response) {
                             vueThis.articledata = response.data.data.list
                             vueThis.articleresult = response.data.data
@@ -349,7 +349,7 @@ export default {
                                 'Content-Type': 'application/json'
                             },
                             method: 'get',
-                            url: '/api' + '/searchbky?wd=' + articlesearchkeyword
+                            url: 'https://114.55.94.186' + '/searchbky?wd=' + articlesearchkeyword
                         }).then(function (response) {
                             vueThis.articledata = response.data.data.list
                             vueThis.articleresult = response.data.data
@@ -369,7 +369,7 @@ export default {
                                 'Content-Type': 'application/json'
                             },
                             method: 'get',
-                            url: '/api' + '/s?wd=' + searchkeyword
+                            url: 'https://114.55.94.186' + '/s?wd=' + searchkeyword
                         }).then(function (response) {
                             vueThis.data = response.data.data.list
                             vueThis.result = response.data.data
@@ -390,7 +390,7 @@ export default {
                                     'Content-Type': 'application/json'
                                 },
                                 method: 'post',
-                                url: '/api' + '/logout'
+                                url: 'https://114.55.94.186' + '/logout'
                             })
                                 .then(function (response) {
                                     vueThis.$message(response.data.msg)
@@ -419,7 +419,7 @@ export default {
                         'Content-Type': 'application/json'
                     },
                     method: 'post',
-                    url: '/api' + '/todetail',
+                    url: 'https://114.55.94.186' + '/todetail',
                     data: JSON.stringify({
                         'keyword': keyword
                     }),
