@@ -7,7 +7,7 @@ export function login(data) {
     data
   })*/
   return request({
-    url: '/tologin',
+    url: process.env.VUE_APP_BASE_API + '/tologin',
     method: 'post',
     data
   })
