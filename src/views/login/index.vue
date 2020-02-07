@@ -4,7 +4,7 @@
                  label-position="left">
 
             <div class="title-container">
-                <h3 class="title">Login Forms</h3>
+                <h3 class="title">AISearch管理后台</h3>
             </div>
 
             <el-form-item prop="username">
@@ -52,12 +52,12 @@
 
             <div style="position:relative">
                 <div class="tips">
-                    <span>Username : admin</span>
-                    <span>Password : any</span>
+                    <span>测试账号 : test</span>
+                    <span>密码 : test</span>
                 </div>
                 <div class="tips">
-                    <span style="margin-right:18px;">Username : editor</span>
-                    <span>Password : any</span>
+                    <span style="margin-right:18px;">普通管理员 : admin</span>
+                    <span>密码 : admin</span>
                 </div>
 
                 <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
@@ -180,7 +180,8 @@
                         this.loginForm.pcOrPhone = mylogin.pcOrPhone();
                         this.loginForm.browserInfo = mylogin.getBrowserInfo();
                         this.$store.dispatch('user/login', this.loginForm)
-                            .then(() => {
+                            .then((response) => {
+                                console.log(response)
                                 this.$router.push({path: this.redirect || '/', query: this.otherQuery})
                                 this.loading = false
                             })
