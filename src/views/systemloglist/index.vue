@@ -6,12 +6,12 @@
         <!--搜索条件-->
         <div>
             <div style="display:inline">
-                <span style="margin-left: 50px;">关键字</span>
-                <el-input style="margin-bottom:5px;width: 300px" v-model="data.queryForm.keyword"></el-input>
-                <span style="margin-left: 50px;">位置</span>
+                <span style="margin-left: 0px;">关键字</span>
+                <el-input style="margin-bottom:5px;width: 200px" v-model="data.queryForm.keyword"></el-input>
+                <span style="margin-left: 0px;">位置</span>
                 <el-input style="margin-bottom:5px;width: 300px" v-model="data.queryForm.location"></el-input>
-                <span style="margin-left: 50px;">搜索时间</span>
-                <el-date-picker style="margin-bottom:5px;width: 300px"
+                <span style="margin-left: 00px;">搜索时间</span>
+                <el-date-picker style="margin-bottom:5px;width: 400px"
                                 v-model="data.queryForm.createtime"
                                 type="datetimerange"
                                 format="yyyy-MM-dd HH:mm" value-format="yyyy-MM-dd HH:mm"
@@ -24,7 +24,7 @@
 
         <div>
             <div style="display:inline">
-                <span style="margin-left: 33px;">操作系统</span>
+                <span style="margin-left: 0px;">操作系统</span>
                 <el-select style="margin-bottom:5px;width: 300px" v-model="data.queryForm.system" placeholder="请选择">
                     <el-option
                         label="请选择"
@@ -37,7 +37,7 @@
                         :value="item">
                     </el-option>
                 </el-select>
-                <span style="margin-left: 37px;">浏览器</span>
+                <span style="margin-left: 0px;">浏览器</span>
                 <el-select style="margin-bottom:5px;width: 300px" v-model="data.queryForm.browser" placeholder="请选择">
                     <el-option
                         label="请选择"
@@ -50,7 +50,7 @@
                         :value="item">
                     </el-option>
                 </el-select>
-                <span style="margin-left: 80px;">设备</span>
+                <span style="margin-left: 0px;">设备</span>
                 <el-select style="margin-bottom:5px;width: 300px" v-model="data.queryForm.device" placeholder="请选择">
                     <el-option
                         label="请选择"

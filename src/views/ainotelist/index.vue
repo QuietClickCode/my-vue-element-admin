@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <div style="text-align:center">
         <div style="text-align: center">
             <el-link type="primary" style="font-size: large">便签记录详情</el-link>
         </div>
         <!--搜索条件-->
         <div>
             <div style="display:inline">
-                <span style="margin-left: 50px;">关键字</span>
-                <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.keyword"></el-input>
-                <span style="margin-left: 50px;">位置</span>
-                <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.location"></el-input>
-                <span style="margin-left: 50px;">搜索时间</span>
-                <el-date-picker style="margin-bottom:5px;width: 300px"
+                <span style="margin-left: 0px;">关键字</span>
+                <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.keyword"></el-input>
+                <span style="margin-left: 0px;">位置</span>
+                <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.location"></el-input>
+                <span style="margin-left: 0px;">搜索时间</span>
+                <el-date-picker style="margin-bottom:5px;width: 400px"
                                 v-model="queryForm.createtime"
                                 type="datetimerange"
                                 format="yyyy-MM-dd HH:mm" value-format="yyyy-MM-dd HH:mm"
@@ -24,8 +24,8 @@
 
         <div>
             <div style="display:inline">
-                <span style="margin-left: 33px;">操作系统</span>
-                <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.system" placeholder="请选择">
+                <span style="margin-left: 0px;">操作系统</span>
+                <el-select style="margin-bottom:5px;width: 200px" v-model="queryForm.system" placeholder="请选择">
                     <el-option
                         label="请选择"
                         value="">
@@ -50,8 +50,8 @@
                         :value="item">
                     </el-option>
                 </el-select>
-                <span style="margin-left: 80px;">设备</span>
-                <el-select style="margin-bottom:5px;width: 300px"  v-model="queryForm.device" placeholder="请选择">
+                <span style="margin-left: 0px;">设备</span>
+                <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.device" placeholder="请选择">
                     <el-option
                         label="请选择"
                         value="">
@@ -148,129 +148,125 @@
 </template>
 
 <script>
-import axios from 'axios'
+    import axios from 'axios'
 
-var store = {
-    queryForm: {keyword: "", startpage: 0, location: "", system: "", createtime: [], browser: "", device: ""},
-    system: [],
-    browser: [],
-    device: [],
-    items: [],
-    length: 0,
-    currentpage:1
-};
-export default {
-    name: 'ainotelist',
-    data () {
-        return store
-    },
-    created: function () {
-        this.init()
-    },
-    mounted: function () {
-        this.btnquery()
+    var store = {
+        queryForm: {keyword: "", startpage: 0, location: "", system: "", createtime: [], browser: "", device: ""},
+        system: [],
+        browser: [],
+        device: [],
+        items: [],
+        length: 0,
+        currentpage: 1
+    };
+    export default {
+        name: 'ainotelist',
+        data() {
+            return store
+        },
+        created: function () {
+            this.init()
+        },
+        mounted: function () {
+            this.btnquery()
 
-    },
-    methods: {
-        init: function () {
-            console.log("dd")
-            var vueThis = this
-            axios.post(process.env.VUE_APP_BASE_API + '/queryBrowser', {
-            })
-                .then(function (response) {
-                    vueThis.browser = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            axios.post(process.env.VUE_APP_BASE_API + '/querySystem', {
-            })
-                .then(function (response) {
-                    vueThis.system = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            axios.post(process.env.VUE_APP_BASE_API + '/queryDevice', {
-            })
-                .then(function (response) {
-                    vueThis.device = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
         },
-        handleCurrentChange (val) {
-            this.queryForm.startpage = 0 + (val - 1) * 10
-            this.query();
-            this.currentpage = val
-        },
-        query: function () {
-            var vueThis = this
-            axios({
-                url: process.env.VUE_APP_BASE_API + "/queryAiNote",
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.items = response.data
-                    console.log(JSON.stringify(vueThis.items) + '----------------')
+        methods: {
+            init: function () {
+                var vueThis = this
+                axios.post(process.env.VUE_APP_BASE_API + '/queryBrowser', {})
+                    .then(function (response) {
+                        vueThis.browser = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                axios.post(process.env.VUE_APP_BASE_API + '/querySystem', {})
+                    .then(function (response) {
+                        vueThis.system = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                axios.post(process.env.VUE_APP_BASE_API + '/queryDevice', {})
+                    .then(function (response) {
+                        vueThis.device = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            handleCurrentChange(val) {
+                this.queryForm.startpage = 0 + (val - 1) * 10
+                this.query();
+                this.currentpage = val
+            },
+            query: function () {
+                var vueThis = this
+                axios({
+                    url: process.env.VUE_APP_BASE_API + "/queryAiNote",
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-                .catch(function (error) {
-                    console.log('--------------------')
-                    console.log(error)
+                    .then(function (response) {
+                        vueThis.items = response.data
+                        console.log(JSON.stringify(vueThis.items) + '----------------')
+                    })
+                    .catch(function (error) {
+                        console.log('--------------------')
+                        console.log(error)
+                    })
+                axios({
+                    url: process.env.VUE_APP_BASE_API + "/queryAiNoteCount",
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-            axios({
-                url: process.env.VUE_APP_BASE_API + "/queryAiNoteCount",
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.length = response.data
+                    .then(function (response) {
+                        vueThis.length = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            btnquery: function () {
+                var vueThis = this
+                /*条件查询就要清空起始页这个查询条件,不然会出问题*/
+                vueThis.queryForm.startpage = 0;
+                vueThis.currentpage = 1;
+                axios({
+                    url: process.env.VUE_APP_BASE_API + '/queryAiNote',
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-                .catch(function (error) {
-                    console.log(error)
+                    .then(function (response) {
+                        vueThis.items = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(vueThis.items + '-=================')
+                    })
+                axios({
+                    url: process.env.VUE_APP_BASE_API + '/queryAiNoteCount',
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-        },
-        btnquery: function () {
-            var vueThis = this
-            /*条件查询就要清空起始页这个查询条件,不然会出问题*/
-            vueThis.queryForm.startpage = 0;
-            vueThis.currentpage = 1;
-            axios({
-                url: process.env.VUE_APP_BASE_API + '/queryAiNote',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.items = response.data
-                })
-                .catch(function (error) {
-                    console.log(vueThis.items + '-=================')
-                })
-            axios({
-                url: process.env.VUE_APP_BASE_API + '/queryAiNoteCount',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.length = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
+                    .then(function (response) {
+                        vueThis.length = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            }
+
         }
-
     }
-}
 </script>
 
 <style>
-/*输入框水平居中*/
-.center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
+    /*输入框水平居中*/
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 </style>
