@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div id="markdownlist">
+    <div style="text-align:center">
+        <div id="markdownlist" style="text-align: center;">
             <div style="text-align: center">
                 <el-link type="primary" style="font-size: large">markdown详情</el-link>
             </div>
@@ -9,12 +9,12 @@
             <!--搜索条件-->
             <div>
                 <div style="display:inline">
-                    <span style="margin-left: 50px;">关键字</span>
-                    <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.keyword"></el-input>
-                    <span style="margin-left: 50px;">位置</span>
-                    <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.location"></el-input>
-                    <span style="margin-left: 50px;">搜索时间</span>
-                    <el-date-picker style="margin-bottom:5px;width: 300px"
+                    <span style="margin-left: 0px;">关键字</span>
+                    <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.keyword"></el-input>
+                    <span style="margin-left: 0px;">位置</span>
+                    <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.location"></el-input>
+                    <span style="margin-left: 0px;">搜索时间</span>
+                    <el-date-picker style="margin-bottom:5px;width: 400px"
                                     v-model="queryForm.createtime"
                                     type="datetimerange"
                                     format="yyyy-MM-dd HH:mm" value-format="yyyy-MM-dd HH:mm"
@@ -27,7 +27,7 @@
 
             <div>
                 <div style="display:inline">
-                    <span style="margin-left: 33px;">操作系统</span>
+                    <span style="margin-left: 0px;">操作系统</span>
                     <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.system" placeholder="请选择">
                         <el-option
                             label="请选择"
@@ -40,7 +40,7 @@
                             :value="item">
                         </el-option>
                     </el-select>
-                    <span style="margin-left: 37px;">浏览器</span>
+                    <span style="margin-left: 0px;">浏览器</span>
                     <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.browser" placeholder="请选择">
                         <el-option
                             label="请选择"
@@ -53,8 +53,8 @@
                             :value="item">
                         </el-option>
                     </el-select>
-                    <span style="margin-left: 80px;">设备</span>
-                    <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.device" placeholder="请选择">
+                    <span style="margin-left: 0px;">设备</span>
+                    <el-select style="margin-bottom:5px;width: 200px" v-model="queryForm.device" placeholder="请选择">
                         <el-option
                             label="请选择"
                             value="">
@@ -170,11 +170,13 @@
                 <el-button @click="enter">退出</el-button>
             </div>
             <el-row>
-                <mavon-editor :editable="false" ref="myMarkdownviewtitle"  id="viewtitle" v-model="viewmarkdowndetailtitle" :toolbars="toolbars"/>
+                <mavon-editor :editable="false" ref="myMarkdownviewtitle" id="viewtitle"
+                              v-model="viewmarkdowndetailtitle" :toolbars="toolbars"/>
             </el-row>
             <div style="text-align: center;padding-top: 0px">正文</div>
             <el-row>
-                <mavon-editor :editable="false" ref="myMarkdownviewtitle"  id="viewcontent" v-model="viewmarkdowndetailcontent" :toolbars="toolbars"/>
+                <mavon-editor :editable="false" ref="myMarkdownviewtitle" id="viewcontent"
+                              v-model="viewmarkdowndetailcontent" :toolbars="toolbars"/>
             </el-row>
             <div style="position:fixed;bottom: 10px;left:600px;z-index:1000000">
                 <el-button @click="enter">确定</el-button>
@@ -186,11 +188,13 @@
                 <el-button @click="enter">退出</el-button>
             </div>
             <el-row>
-                <mavon-editor ref="myMarkdownupdatetitle"  id="updatetitle" v-model="updatemarkdowndetailtitle" :toolbars="toolbars"/>
+                <mavon-editor ref="myMarkdownupdatetitle" id="updatetitle" v-model="updatemarkdowndetailtitle"
+                              :toolbars="toolbars"/>
             </el-row>
             <div style="text-align: center;padding-top: 0px">正文</div>
             <el-row>
-                <mavon-editor ref="myMarkdownupdatetitle"  id="updatecontent" v-model="updatemarkdowndetailcontent" :toolbars="toolbars"/>
+                <mavon-editor ref="myMarkdownupdatetitle" id="updatecontent" v-model="updatemarkdowndetailcontent"
+                              :toolbars="toolbars"/>
             </el-row>
             <div style="position:fixed;bottom: 10px;left:600px;z-index:1000000">
                 <el-button @click="updatemarkdown">保存</el-button>
@@ -210,307 +214,310 @@
 </template>
 
 <script>
-import axios from 'axios'
-import $ from 'jquery'
-import request from '@/utils/request'
-var store = {
-    queryForm: { keyword: '', startpage: 0, location: '', system: '', createtime: [], browser: '', device: '' },
-    system: [],
-    browser: [],
-    device: [],
-    items: [],
-    length: 0,
-    currentpage: 1,
-    updatemarkdowndetailtitle: '',
-    updatemarkdowndetailcontent: '',
-    viewmarkdowndetailtitle: '',
-    viewmarkdowndetailcontent: '',
-    currentId: '',
-    dialogVisible: false,
-    currentRow:"",
-    toolbars: {
-        bold: true, // 粗体
-        italic: true, // 斜体
-        header: true, // 标题
-        underline: true, // 下划线
-        mark: true, // 标记
-        superscript: true, // 上角标
-        quote: true, // 引用
-        ol: true, // 有序列表
-        link: true, // 链接
-        imagelink: true, // 图片链接
-        help: true, // 帮助
-        code: true, // code
-        subfield: true, // 是否需要分栏
-        fullscreen: true, // 全屏编辑
-        readmodel: true, // 沉浸式阅读
-        /* 1.3.5 */
-        undo: true, // 上一步
-        trash: true, // 清空
-        save: true, // 保存（触发events中的save事件）
-        /* 1.4.2 */
-        navigation: true // 导航目录
+    import axios from 'axios'
+    import $ from 'jquery'
+    import request from '@/utils/request'
+
+    var store = {
+        queryForm: {keyword: '', startpage: 0, location: '', system: '', createtime: [], browser: '', device: ''},
+        system: [],
+        browser: [],
+        device: [],
+        items: [],
+        length: 0,
+        currentpage: 1,
+        updatemarkdowndetailtitle: '',
+        updatemarkdowndetailcontent: '',
+        viewmarkdowndetailtitle: '',
+        viewmarkdowndetailcontent: '',
+        currentId: '',
+        dialogVisible: false,
+        currentRow: "",
+        toolbars: {
+            bold: true, // 粗体
+            italic: true, // 斜体
+            header: true, // 标题
+            underline: true, // 下划线
+            mark: true, // 标记
+            superscript: true, // 上角标
+            quote: true, // 引用
+            ol: true, // 有序列表
+            link: true, // 链接
+            imagelink: true, // 图片链接
+            help: true, // 帮助
+            code: true, // code
+            subfield: true, // 是否需要分栏
+            fullscreen: true, // 全屏编辑
+            readmodel: true, // 沉浸式阅读
+            /* 1.3.5 */
+            undo: true, // 上一步
+            trash: true, // 清空
+            save: true, // 保存（触发events中的save事件）
+            /* 1.4.2 */
+            navigation: true // 导航目录
+        }
     }
-}
-export default {
-    name: 'markdownlist',
-    data () {
-        return store
-    },
-    created: function () {
-        this.init()
-    },
-    mounted: function () {
-        this.query()
-    },
-    methods: {
-        handleClose: function () {
-            var vueThis = this
-            vueThis.dialogVisible = false
-            request({
-                url: 'deletemarkdown',
-                method: 'post',
-                data:{
-                    'id': vueThis.currentRow.id
-                }
-            }).then(function (response) {
-                if (response.data == 1) {
-                    vueThis.$message('删除成功')
-                    vueThis.$router.go(0)
-                }
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            /*axios({
-                url:'https://114.55.94.186'+ '/deletemarkdown',
-                method: 'post',
-                data: {
-                    'id': vueThis.currentRow.id
-                },
-            })
-                .then(function (response) {
-                    if (response.data == 1) {
+    export default {
+        name: 'markdownlist',
+        data() {
+            return store
+        },
+        created: function () {
+            this.init()
+        },
+        mounted: function () {
+            this.query()
+        },
+        methods: {
+            handleClose: function () {
+                console.log("dd")
+                var vueThis = this
+                vueThis.dialogVisible = false
+                request({
+                    url: 'deletemarkdown',
+                    method: 'post',
+                    data: {
+                        'id': vueThis.currentRow.id
+                    }
+                }).then(function (response) {
+                    if (response == 1) {
                         vueThis.$message('删除成功')
-                        vueThis.$router.go(0)
+                        vueThis.query();
                     }
                 })
-                .catch(function (error) {
-                    console.log('--------------------')
-                    console.log(error)
-                })*/
-        },
-        updatemarkdown: function () {
-            var vueThis = this
-            /*axios({
-                url: 'https://114.55.94.186'+'/updatemarkdown',
-                method: 'post',
-                data: {
-                    'title': vueThis.updatemarkdowndetailtitle,
-                    'content': vueThis.updatemarkdowndetailcontent,
-                    'id': vueThis.currentId
-                },
-            })
-                .then(function (response) {
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                /*axios({
+                    url:'https://114.55.94.186'+ '/deletemarkdown',
+                    method: 'post',
+                    data: {
+                        'id': vueThis.currentRow.id
+                    },
+                })
+                    .then(function (response) {
+                        if (response.data == 1) {
+                            vueThis.$message('删除成功')
+                            vueThis.$router.go(0)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log('--------------------')
+                        console.log(error)
+                    })*/
+            },
+            updatemarkdown: function () {
+                var vueThis = this
+                /*axios({
+                    url: 'https://114.55.94.186'+'/updatemarkdown',
+                    method: 'post',
+                    data: {
+                        'title': vueThis.updatemarkdowndetailtitle,
+                        'content': vueThis.updatemarkdowndetailcontent,
+                        'id': vueThis.currentId
+                    },
+                })
+                    .then(function (response) {
+                        if (response.data == 1) {
+                            vueThis.$message('保存成功')
+                            vueThis.$router.go(0)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log('--------------------')
+                        console.log(error)
+                    })*/
+                request({
+                    url: 'updatemarkdown',
+                    method: 'post',
+                    data: {
+                        'title': vueThis.updatemarkdowndetailtitle,
+                        'content': vueThis.updatemarkdowndetailcontent,
+                        'id': vueThis.currentId
+                    }
+                }).then(function (response) {
                     if (response.data == 1) {
                         vueThis.$message('保存成功')
                         vueThis.$router.go(0)
                     }
                 })
-                .catch(function (error) {
-                    console.log('--------------------')
-                    console.log(error)
-                })*/
-            request({
-                url: 'updatemarkdown',
-                method: 'post',
-                data:{
-                    'title': vueThis.updatemarkdowndetailtitle,
-                    'content': vueThis.updatemarkdowndetailcontent,
-                    'id': vueThis.currentId
-                }
-            }).then(function (response) {
-                if (response.data == 1) {
-                    vueThis.$message('保存成功')
-                    vueThis.$router.go(0)
-                }
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
 
-        },
-        enter: function () {
-            $('#markdownlist').show()
-            $('#viewmarkdowndetail').hide()
-            $('#updatemarkdowndetail').hide()
-        },
-        viewdetail: function (row) {
-            $('#markdownlist').hide()
-            $('#viewmarkdowndetail').show()
-            this.viewmarkdowndetailcontent = row.content
-            this.viewmarkdowndetailtitle = row.title
-        },
-        adddetail: function (row) {
-            this.$router.push({
-                path: '/markdown'
-            })
-        },
-        deletedetail: function (row) {
-            var vueThis = this
-            vueThis.dialogVisible = true;
-            vueThis.currentRow = row;
-        },
-        updatedetail: function (row) {
-            $('#markdownlist').hide()
-            $('#updatemarkdowndetail').show()
-            this.updatemarkdowndetailcontent = row.content
-            this.updatemarkdowndetailtitle = row.title
-            this.currentId = row.id
-        },
-        init: function () {
-            var vueThis = this
+            },
+            enter: function () {
+                $('#markdownlist').show()
+                $('#viewmarkdowndetail').hide()
+                $('#updatemarkdowndetail').hide()
+            },
+            viewdetail: function (row) {
+                $('#markdownlist').hide()
+                $('#viewmarkdowndetail').show()
+                this.viewmarkdowndetailcontent = row.content
+                this.viewmarkdowndetailtitle = row.title
+            },
+            adddetail: function (row) {
+                this.$router.push({
+                    path: '/markdown/index'
+                })
+            },
+            deletedetail: function (row) {
+                var vueThis = this
+                vueThis.dialogVisible = true;
+                vueThis.currentRow = row;
+            },
+            updatedetail: function (row) {
+                $('#markdownlist').hide()
+                $('#updatemarkdowndetail').show()
+                this.updatemarkdowndetailcontent = row.content
+                this.updatemarkdowndetailtitle = row.title
+                this.currentId = row.id
+            },
+            init: function () {
+                var vueThis = this
 
-            axios.post('https://114.55.94.186'+'/queryBrowser', {})
-                .then(function (response) {
-                    vueThis.browser = response.data
+                axios.post('https://114.55.94.186' + '/queryBrowser', {})
+                    .then(function (response) {
+                        vueThis.browser = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                axios.post('https://114.55.94.186' + '/querySystem', {})
+                    .then(function (response) {
+                        vueThis.system = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                axios.post('https://114.55.94.186' + '/queryDevice', {})
+                    .then(function (response) {
+                        vueThis.device = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            handleCurrentChange(val) {
+                this.queryForm.startpage = 0 + (val - 1) * 10
+                this.query()
+                this.currentpage = val
+            },
+            query: function () {
+                var vueThis = this
+                request({
+                    url: 'queryMarkdownList',
+                    method: 'post',
+                    data: vueThis.queryForm,
+                }).then(function (response) {
+                    vueThis.items = response
                 })
-                .catch(function (error) {
-                    console.log(error)
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                /*axios({
+                    url:'https://114.55.94.186'+'/queryMarkdownList',
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-            axios.post('https://114.55.94.186'+'/querySystem', {})
-                .then(function (response) {
-                    vueThis.system = response.data
+                    .then(function (response) {
+                        vueThis.items = response.data
+                    })
+                    .catch(function (error) {
+                        console.log('--------------------')
+                        console.log(error)
+                    })*/
+                request({
+                    url: 'queryMarkdownListCount',
+                    method: 'post',
+                    data: vueThis.queryForm,
+                }).then(function (response) {
+                    vueThis.length = response
                 })
-                .catch(function (error) {
-                    console.log(error)
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                /*axios({
+                    url: 'https://114.55.94.186'+'/queryMarkdownListCount',
+                    method: 'post',
+                    data: vueThis.queryForm,
                 })
-            axios.post('https://114.55.94.186'+'/queryDevice', {})
-                .then(function (response) {
-                    vueThis.device = response.data
+                    .then(function (response) {
+                        vueThis.length = response.data
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })*/
+            },
+            btnquery: function () {
+                var vueThis = this
+                /*条件查询就要清空起始页这个查询条件,不然会出问题*/
+                vueThis.queryForm.startpage = 0
+                vueThis.currentpage = 1
+                vueThis.length = response.data
+                request({
+                    url: 'queryMarkdownList',
+                    method: 'post',
+                    data: vueThis.queryForm,
+                }).then(function (response) {
+                    vueThis.items = response
                 })
-                .catch(function (error) {
-                    console.log(error)
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                request({
+                    url: 'queryMarkdownListCount',
+                    method: 'post',
+                    data: vueThis.queryForm,
+                }).then(function (response) {
+                    vueThis.length = response
                 })
-        },
-        handleCurrentChange (val) {
-            this.queryForm.startpage = 0 + (val - 1) * 10
-            this.query()
-            this.currentpage = val
-        },
-        query: function () {
-            var vueThis = this
-            request({
-                url: 'queryMarkdownList',
-                method: 'post',
-                data:vueThis.queryForm,
-            }).then(function (response) {
-                vueThis.items = response
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            /*axios({
-                url:'https://114.55.94.186'+'/queryMarkdownList',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.items = response.data
-                })
-                .catch(function (error) {
-                    console.log('--------------------')
-                    console.log(error)
-                })*/
-            request({
-                url: 'queryMarkdownListCount',
-                method: 'post',
-                data: vueThis.queryForm,
-            }).then(function (response) {
-                vueThis.length = response
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            /*axios({
-                url: 'https://114.55.94.186'+'/queryMarkdownListCount',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.length = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })*/
-        },
-        btnquery: function () {
-            var vueThis = this
-            /*条件查询就要清空起始页这个查询条件,不然会出问题*/
-            vueThis.queryForm.startpage = 0
-            vueThis.currentpage = 1
-            vueThis.length = response.data
-            request({
-                url: 'queryMarkdownList',
-                method: 'post',
-                data:vueThis.queryForm,
-            }).then(function (response) {
-                vueThis.items = response
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            request({
-                url: 'queryMarkdownListCount',
-                method: 'post',
-                data: vueThis.queryForm,
-            }).then(function (response) {
-                vueThis.length = response
-            })
-                .catch(function (error) {
-                    console.log(error)
-                })
-           /* axios({
-                url: 'https://114.55.94.186'+'/queryMarkdownList',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.items = response.data
-                })
-                .catch(function (error) {
-                    console.log(vueThis.items + '-=================')
-                })
-            axios({
-                url: 'https://114.55.94.186'+'/queryMarkdownListCount',
-                method: 'post',
-                data: vueThis.queryForm,
-            })
-                .then(function (response) {
-                    vueThis.length = response.data
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })*/
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                /* axios({
+                     url: 'https://114.55.94.186'+'/queryMarkdownList',
+                     method: 'post',
+                     data: vueThis.queryForm,
+                 })
+                     .then(function (response) {
+                         vueThis.items = response.data
+                     })
+                     .catch(function (error) {
+                         console.log(vueThis.items + '-=================')
+                     })
+                 axios({
+                     url: 'https://114.55.94.186'+'/queryMarkdownListCount',
+                     method: 'post',
+                     data: vueThis.queryForm,
+                 })
+                     .then(function (response) {
+                         vueThis.length = response.data
+                     })
+                     .catch(function (error) {
+                         console.log(error)
+                     })*/
+            }
+
         }
-
     }
-}
 </script>
 
 <style>
-#viewtitle {
-    height: 50px; /*至少300px*/
-}
+    #viewtitle {
+        height: 50px; /*至少300px*/
+    }
 
-#viewcontent {
-    height: 500px;
-}
-#updatetitle {
-    height: 50px; /*至少300px*/
-}
+    #viewcontent {
+        height: 500px;
+    }
 
-#updatecontent {
-    height: 500px;
-}
+    #updatetitle {
+        height: 50px; /*至少300px*/
+    }
+
+    #updatecontent {
+        height: 500px;
+    }
 </style>
