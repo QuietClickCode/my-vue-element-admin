@@ -13,7 +13,7 @@
         </span>
         <el-input
           ref="username"
-          v-model="loginForm.username"
+          v-model="loginForm.user.username"
           placeholder="Username"
           name="username"
           type="text"
@@ -30,7 +30,7 @@
           <el-input
             :key="passwordType"
             ref="password"
-            v-model="loginForm.password"
+            v-model="loginForm.user.password"
             :type="passwordType"
             placeholder="Password"
             name="password"
@@ -85,22 +85,24 @@
     components: {SocialSign},
     data() {
       const validateUsername = (rule, value, callback) => {
-        if (!validUsername(value)) {
+        /*if (!validUsername(value)) {
           callback(new Error('Please enter the correct user name'))
         } else {
           callback()
-        }
+        }*/
+        callback();
       }
       const validatePassword = (rule, value, callback) => {
-        if (value.length < 6) {
+        /*if (value.length < 6) {
           callback(new Error('The password can not be less than 6 digits'))
         } else {
           callback()
-        }
+        }*/
+        callback();
       }
       return {
         loginForm: {
-          "user": {"username": "zjj", "password": "123456"},
+          "user": {"username": "", "password": ""},
           "location": ["113.250.249.88", "重庆市重庆市", 29.56471, 106.55073],
           "browserInfo": ["Win10", "chrome", "74.0.3729.131"],
           "pcOrPhone": "pc端",

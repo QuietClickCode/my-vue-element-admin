@@ -31,7 +31,8 @@ module.exports = {
     productionSourceMap: false,
     devServer: {
         port: port,
-        open: true,
+        //配置浏览器自动打开
+        open: false,
         overlay: {
             warnings: false,
             errors: true
