@@ -103,10 +103,10 @@
             return {
                 loginForm: {
                     "user": {"username": "", "password": ""},
-                    "location": ["113.250.249.88", "重庆市重庆市", 29.56471, 106.55073],
-                    "browserInfo": ["Win10", "chrome", "74.0.3729.131"],
-                    "pcOrPhone": "pc端",
-                    "localIp": "192.168.0.73"
+                    "location": [],
+                    "browserInfo": [],
+                    "pcOrPhone": "",
+                    "localIp": ""
                 },
                 loginRules: {
                     username: [{required: true, trigger: 'blur', validator: validateUsername}],
