@@ -173,8 +173,9 @@ export default {
     },
     methods: {
         init: function () {
+            console.log("dd")
             var vueThis = this
-            axios.post('/queryBrowser', {
+            axios.post(process.env.VUE_APP_BASE_API + '/queryBrowser', {
             })
                 .then(function (response) {
                     vueThis.browser = response.data
@@ -182,7 +183,7 @@ export default {
                 .catch(function (error) {
                     console.log(error)
                 })
-            axios.post('/querySystem', {
+            axios.post(process.env.VUE_APP_BASE_API + '/querySystem', {
             })
                 .then(function (response) {
                     vueThis.system = response.data
@@ -190,7 +191,7 @@ export default {
                 .catch(function (error) {
                     console.log(error)
                 })
-            axios.post('/queryDevice', {
+            axios.post(process.env.VUE_APP_BASE_API + '/queryDevice', {
             })
                 .then(function (response) {
                     vueThis.device = response.data
@@ -207,7 +208,7 @@ export default {
         query: function () {
             var vueThis = this
             axios({
-                url: "/queryAiNote",
+                url: process.env.VUE_APP_BASE_API + "/queryAiNote",
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -220,7 +221,7 @@ export default {
                     console.log(error)
                 })
             axios({
-                url: "/queryAiNoteCount",
+                url: process.env.VUE_APP_BASE_API + "/queryAiNoteCount",
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -237,7 +238,7 @@ export default {
             vueThis.queryForm.startpage = 0;
             vueThis.currentpage = 1;
             axios({
-                url: '/queryAiNote',
+                url: process.env.VUE_APP_BASE_API + '/queryAiNote',
                 method: 'post',
                 data: vueThis.queryForm,
             })
@@ -248,7 +249,7 @@ export default {
                     console.log(vueThis.items + '-=================')
                 })
             axios({
-                url: '/queryAiNoteCount',
+                url: process.env.VUE_APP_BASE_API + '/queryAiNoteCount',
                 method: 'post',
                 data: vueThis.queryForm,
             })
