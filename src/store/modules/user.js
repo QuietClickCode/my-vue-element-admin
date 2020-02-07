@@ -45,10 +45,10 @@ const actions = {
             })*/
             login({
                 'user': {'username': user.username, 'password': user.password},
-                'location': ['125.84.179.42', '重庆市重庆市', 29.56471, 106.55073],
-                'browserInfo': ['Win10', 'chrome', '74.0.3729.131'],
-                'pcOrPhone': 'pc端',
-                'localIp': '192.168.0.110'
+                'location': userInfo.location,
+                'browserInfo': userInfo.browserInfo,
+                'pcOrPhone': userInfo.pcOrPhone,
+                'localIp': userInfo.localIp
             }).then(response => {
                 /*const { data } = response
                 commit('SET_TOKEN', data.token)
