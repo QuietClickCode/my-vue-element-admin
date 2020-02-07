@@ -29,7 +29,7 @@ export function getOS () {
 
 export function getBrowserInfo () {
     var agent = navigator.userAgent.toLowerCase()
-    console.log(agent)
+    console.log(agent+"---")
     var arr = []
     var system = getOS()
     arr.push(system)
@@ -169,9 +169,12 @@ export function getUserIP (onNewIP) { //  onNewIp - your listener function for n
 }
 
 export function pcOrPhone () {
+
     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        console.log("y")
         return '移动端'
     } else {
+        console.log("p")
         return 'pc端'
     }
 }

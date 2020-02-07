@@ -177,8 +177,8 @@
                         this.loading = true
                         this.loginForm.location = location
                         this.loginForm.localIp = localIp;
-                        this.pcOrPhone = mylogin.pcOrPhone();
-                        this.browserInfo = mylogin.getBrowserInfo();
+                        this.loginForm.pcOrPhone = mylogin.pcOrPhone();
+                        this.loginForm.browserInfo = mylogin.getBrowserInfo();
                         this.$store.dispatch('user/login', this.loginForm)
                             .then(() => {
                                 this.$router.push({path: this.redirect || '/', query: this.otherQuery})
