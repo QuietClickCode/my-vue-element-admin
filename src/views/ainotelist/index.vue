@@ -136,7 +136,6 @@
                              label="操作">
                 <template slot-scope="scope">
                     <el-button @click="viewdetail(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button @click="updatedetail(scope.row)" type="text" size="small">修改</el-button>
                     <el-button @click="deletedetail(scope.row)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>
