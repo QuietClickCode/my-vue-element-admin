@@ -336,9 +336,8 @@
                         'id': vueThis.currentId
                     }
                 }).then(function (response) {
-                    if (response.data == 1) {
+                    if (response == 1) {
                         vueThis.$message('保存成功')
-                        vueThis.$router.go(0)
                     }
                 })
                     .catch(function (error) {

@@ -66,7 +66,8 @@
             </div>
         </div>
 
-
+        <el-input v-model="content" type="textarea" placeholder="写点什么吧~"></el-input>
+        <el-button @click="save">保存</el-button>
         <el-table height="430"
                   :data="items"
         >
@@ -131,6 +132,14 @@
                              prop="createtime"
                              label="创建时间">
             </el-table-column>
+            <el-table-column fixed="right" width="200px"
+                             label="操作">
+                <template slot-scope="scope">
+                    <el-button @click="viewdetail(scope.row)" type="text" size="small">查看</el-button>
+                    <el-button @click="updatedetail(scope.row)" type="text" size="small">修改</el-button>
+                    <el-button @click="deletedetail(scope.row)" type="text" size="small">删除</el-button>
+                </template>
+            </el-table-column>
         </el-table>
         <div class="block" style="text-align: center">
             <el-pagination
@@ -151,6 +160,7 @@
     import axios from 'axios'
 
     var store = {
+        content: "",
         queryForm: {keyword: "", startpage: 0, location: "", system: "", createtime: [], browser: "", device: ""},
         system: [],
         browser: [],
@@ -172,6 +182,33 @@
 
         },
         methods: {
+            save: function () {
+                var vueThis = this;
+                axios({
+                    url: process.env.VUE_APP_BASE_API + "/note",
+                    method: 'post',
+                    data: JSON.stringify({
+                        "content": vueThis.content,
+                    }),
+                    headers:
+                        {
+                            'Content-Type': 'application/json'
+                        }
+                })
+                    .then(function (response) {
+                       if (response.data.status == 0) {
+                           vueThis.$message("保存成功")
+                       }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            adddetail: function (row) {
+                this.$router.push({
+                    path: '/ainote/index'
+                })
+            },
             init: function () {
                 var vueThis = this
                 axios.post(process.env.VUE_APP_BASE_API + '/queryBrowser', {})
