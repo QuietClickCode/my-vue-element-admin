@@ -32,7 +32,11 @@ Vue.use(ElementUI) //使用elementUI
 import {mockXHR} from '../mock'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 Vue.use(mavonEditor)
 if (process.env.NODE_ENV === 'production') {
     mockXHR()

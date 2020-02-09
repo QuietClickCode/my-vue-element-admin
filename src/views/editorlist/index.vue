@@ -1,18 +1,18 @@
 <template>
     <div>
-        <div id="editorlist">
+        <div id="editorlist" style="text-align: center">
             <div style="text-align: center">
-                <el-link type="primary" style="font-size: large">editor详情</el-link>
+                <el-link type="primary" style="font-size: large">富文本编辑器列表</el-link>
             </div>
 
             <!--搜索条件-->
             <div>
                 <div style="display:inline">
-                    <span style="margin-left: 50px;">关键字</span>
-                    <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.keyword"></el-input>
-                    <span style="margin-left: 50px;">位置</span>
-                    <el-input style="margin-bottom:5px;width: 300px" v-model="queryForm.location"></el-input>
-                    <span style="margin-left: 50px;">搜索时间</span>
+                    <span style="margin-left: 0px;">关键字</span>
+                    <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.keyword"></el-input>
+                    <span style="margin-left: 0px;">位置</span>
+                    <el-input style="margin-bottom:5px;width: 200px" v-model="queryForm.location"></el-input>
+                    <span style="margin-left: 0px;">搜索时间</span>
                     <el-date-picker style="margin-bottom:5px;width: 300px"
                                     v-model="queryForm.createtime"
                                     type="datetimerange"
@@ -27,7 +27,7 @@
             <div>
                 <div style="display:inline">
                     <span style="margin-left: 33px;">操作系统</span>
-                    <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.system" placeholder="请选择">
+                    <el-select style="margin-bottom:5px;width: 200px" v-model="queryForm.system" placeholder="请选择">
                         <el-option
                             label="请选择"
                             value="">
@@ -40,7 +40,7 @@
                         </el-option>
                     </el-select>
                     <span style="margin-left: 37px;">浏览器</span>
-                    <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.browser" placeholder="请选择">
+                    <el-select style="margin-bottom:5px;width: 200px" v-model="queryForm.browser" placeholder="请选择">
                         <el-option
                             label="请选择"
                             value="">
@@ -53,7 +53,7 @@
                         </el-option>
                     </el-select>
                     <span style="margin-left: 80px;">设备</span>
-                    <el-select style="margin-bottom:5px;width: 300px" v-model="queryForm.device" placeholder="请选择">
+                    <el-select style="margin-bottom:5px;width: 200px" v-model="queryForm.device" placeholder="请选择">
                         <el-option
                             label="请选择"
                             value="">
@@ -262,7 +262,7 @@ export default {
                 .then(function (response) {
                     if (response.data == 1) {
                         vueThis.$message('删除成功')
-                        vueThis.$router.go(0)
+                        vueThis.query();
                     }
                 })
                 .catch(function (error) {
@@ -308,7 +308,7 @@ export default {
         },
         adddetail: function (row) {
             this.$router.push({
-                path: '/editor'
+                path: '/editor/index'
             })
         },
         deletedetail: function (row) {
