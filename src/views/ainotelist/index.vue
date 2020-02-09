@@ -153,13 +153,24 @@
         <div style="text-align: center">
             <el-button @click="btnquery">查询</el-button>
         </div>
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="30%">
+            <span>删除后不可恢复,确认删除?</span>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="handleClose">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
     import axios from 'axios'
-
+    import request from '@/utils/request'
     var store = {
+        dialogVisible: false,
         content: "",
         queryForm: {keyword: "", startpage: 0, location: "", system: "", createtime: [], browser: "", device: ""},
         system: [],
@@ -182,6 +193,48 @@
 
         },
         methods: {
+            handleClose: function () {
+                console.log("dd")
+                var vueThis = this
+                vueThis.dialogVisible = false
+                request({
+                    url: 'deleteAINote',
+                    method: 'post',
+                    data: {
+                        'id': vueThis.currentRow.id
+                    }
+                }).then(function (response) {
+                    if (response == 1) {
+                        vueThis.$message('删除成功')
+                        vueThis.query();
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                /*axios({
+                    url:'https://114.55.94.186'+ '/deletemarkdown',
+                    method: 'post',
+                    data: {
+                        'id': vueThis.currentRow.id
+                    },
+                })
+                    .then(function (response) {
+                        if (response.data == 1) {
+                            vueThis.$message('删除成功')
+                            vueThis.$router.go(0)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log('--------------------')
+                        console.log(error)
+                    })*/
+            },
+            deletedetail: function (row) {
+                var vueThis = this
+                vueThis.dialogVisible = true;
+                vueThis.currentRow = row;
+            },
             save: function () {
                 var vueThis = this;
                 axios({
@@ -196,9 +249,9 @@
                         }
                 })
                     .then(function (response) {
-                       if (response.data.status == 0) {
-                           vueThis.$message("保存成功")
-                       }
+                        if (response.data.status == 0) {
+                            vueThis.$message("保存成功")
+                        }
                     })
                     .catch(function (error) {
                         console.log(error)
