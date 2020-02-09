@@ -1,10 +1,10 @@
 <template>
-    <div id="app" style="display: block">
+    <div >
         <div style="text-align: center">
             <el-link type="primary" style="font-size: large">系统操作日志详情</el-link>
         </div>
         <!--搜索条件-->
-        <div>
+        <div style="text-align: center">
             <div style="display:inline">
                 <span style="margin-left: 0px;">关键字</span>
                 <el-input style="margin-bottom:5px;width: 200px" v-model="data.queryForm.keyword"></el-input>
@@ -345,9 +345,6 @@ export default {
 
 <style>
 
-#app {
-    text-align: center;
-}
 
 /*输入框水平居中*/
 .center {

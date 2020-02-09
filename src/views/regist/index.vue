@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on"
+        <el-form ref="registForm" :model="registForm" :rules="loginRules" class="login-form" autocomplete="on"
                  label-position="left">
 
             <div class="title-container">
@@ -13,7 +13,7 @@
         </span>
                 <el-input
                     ref="username"
-                    v-model="loginForm.user.username"
+                    v-model="registForm.user.username"
                     placeholder="Username"
                     name="username"
                     type="text"
@@ -30,7 +30,7 @@
                     <el-input
                         :key="passwordType"
                         ref="password"
-                        v-model="loginForm.user.password"
+                        v-model="registForm.user.password"
                         :type="passwordType"
                         placeholder="Password"
                         name="password"
@@ -47,7 +47,7 @@
             </el-tooltip>
 
             <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-                       @click.native.prevent="handleLogin">登录
+                       @click.native.prevent="handleRegist">注册
             </el-button>
 
             <div style="position:relative">
@@ -78,7 +78,7 @@
 <script>
     import {validUsername} from '@/utils/validate'
     import SocialSign from './components/SocialSignin'
-    import * as mylogin from '@/assets/my-login'
+    import * as myregist from '@/assets/my-regist'
 
     export default {
         name: 'Login',
@@ -101,7 +101,7 @@
                 callback();
             }
             return {
-                loginForm: {
+                registForm: {
                     "user": {"username": "", "password": ""},
                     "location": [],
                     "browserInfo": [],
@@ -136,9 +136,9 @@
             // window.addEventListener('storage', this.afterQRScan)
         },
         mounted() {
-            if (this.loginForm.username === '') {
+            if (this.registForm.username === '') {
                 this.$refs.username.focus()
-            } else if (this.loginForm.password === '') {
+            } else if (this.registForm.password === '') {
                 this.$refs.password.focus()
             }
         },
@@ -168,24 +168,36 @@
                     this.$refs.password.focus()
                 })
             },
-            handleLogin() {
-                mylogin.getLocation(mylogin.cb, this)
+            handleRegist() {
+                myregist.getLocation(myregist.cb, this)
             },
-            tologin: function (user, location, localIp) {
-                this.$refs.loginForm.validate(valid => {
+            toregist: function (user, location, localIp) {
+                var vueThis = this;
+                this.$refs.registForm.validate(valid => {
                     if (valid) {
                         this.loading = true
-                        this.loginForm.location = location
-                        this.loginForm.localIp = localIp;
-                        this.loginForm.pcOrPhone = mylogin.pcOrPhone();
-                        this.loginForm.browserInfo = mylogin.getBrowserInfo();
-                        this.$store.dispatch('user/login', this.loginForm)
+                        this.registForm.location = location
+                        this.registForm.localIp = localIp;
+                        this.registForm.pcOrPhone = myregist.pcOrPhone();
+                        this.registForm.browserInfo = myregist.getBrowserInfo();
+                        this.$store.dispatch('user/regist', this.registForm)
                             .then((response) => {
                                 console.log(response)
-                                this.$router.push({path: this.redirect || '/', query: this.otherQuery})
+                                if (response.status != 0) {
+                                    this.$message({type: "error", message: response.msg});
+                                    this.loading = false
+                                    return;
+                                }
+                                this.$message(response.msg);
+                                setTimeout(function () {
+                                    vueThis.$router.push({path: this.redirect || '/', query: this.otherQuery})
+                                }, 2000)
+
                                 this.loading = false
                             })
-                            .catch(() => {
+                            .catch((error) => {
+                                console.log(error)
+                                this.$message(error);
                                 this.loading = false
                             })
                     } else {

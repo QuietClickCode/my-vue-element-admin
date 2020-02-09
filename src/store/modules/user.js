@@ -1,4 +1,4 @@
-import {login, logout, getInfo} from '@/api/user'
+import {login, regist, logout, getInfo} from '@/api/user'
 import {getToken, setToken, removeToken} from '@/utils/auth'
 import router, {resetRouter} from '@/router'
 
@@ -58,9 +58,45 @@ const actions = {
                 resolve()*/
                 commit('SET_TOKEN', response.msg)
                 setToken(response.msg)
-                resolve()
+                resolve(response)
             }).catch(error => {
                 reject(error)
+            })
+        })
+    },
+    regist({commit}, userInfo) {
+        const {user} = userInfo
+        return new Promise((resolve, reject) => {
+            /*login({ username: username.trim(), password: password }).then(response => {
+              const { data } = response
+              commit('SET_TOKEN', data.token)
+              setToken(data.token)
+              resolve()
+            }).catch(error => {
+              reject(error)
+            })*/
+            regist({
+                'user': {'username': user.username, 'password': user.password},
+                'location': userInfo.location,
+                'browserInfo': userInfo.browserInfo,
+                'pcOrPhone': userInfo.pcOrPhone,
+                'localIp': userInfo.localIp
+            }).then(response => {
+                /*const { data } = response
+                commit('SET_TOKEN', data.token)
+                setToken(data.token)
+                resolve()*/
+                /*const { data } = response
+                commit('SET_TOKEN', data.token)
+                setToken(data.token)
+                resolve()*/
+                /*commit('SET_TOKEN', response.msg)
+                setToken(response.msg)*/
+                resolve(response)
+            }).catch(error => {
+                resolve(error)
+                //本来该这么用的
+                //reject(error)
             })
         })
     },
