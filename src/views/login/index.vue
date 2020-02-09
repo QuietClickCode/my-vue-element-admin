@@ -188,6 +188,11 @@
                         this.$store.dispatch('user/login', this.loginForm)
                             .then((response) => {
                                 console.log(response)
+                                if (response.status != 0) {
+                                    this.$message({type: "error", message: response.msg});
+                                    this.loading = false
+                                    return;
+                                }
                                 this.$router.push({path: this.redirect || '/', query: this.otherQuery})
                                 this.loading = false
                             })
