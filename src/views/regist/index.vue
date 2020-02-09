@@ -60,8 +60,11 @@
                     <span>密码 : admin</span>
                 </div>
 
-                <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
+                <!--<el-button class="thirdparty-button" type="primary" @click="showDialog=true">
                     Or connect with
+                </el-button>-->
+                <el-button class="thirdparty-button" type="primary" @click="toLoginPage">
+                    去登录
                 </el-button>
             </div>
         </el-form>
@@ -146,6 +149,9 @@
             // window.removeEventListener('storage', this.afterQRScan)
         },
         methods: {
+            toLoginPage: function () {
+                this.$router.push("/login");
+            },
             checkCapslock({shiftKey, key} = {}) {
                 if (key && key.length === 1) {
                     if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
