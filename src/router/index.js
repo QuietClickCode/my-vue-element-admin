@@ -136,6 +136,18 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
     {
+        path: '/userlist',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/userlist/index'),
+                name: 'userlist',
+                meta: {title: '用户列表', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
         path: '/markdown',
         component: Layout,
         children: [

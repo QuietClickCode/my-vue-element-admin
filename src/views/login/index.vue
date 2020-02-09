@@ -60,9 +60,9 @@
                     <span>密码 : admin</span>
                 </div>
 
-              <!--  <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-                    Or connect with
-                </el-button>-->
+                <!--  <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
+                      Or connect with
+                  </el-button>-->
                 <el-button class="thirdparty-button" type="primary" @click="toRegistPage">
                     去注册
                 </el-button>
@@ -149,8 +149,8 @@
             // window.removeEventListener('storage', this.afterQRScan)
         },
         methods: {
-            toRegistPage:function () {
-              this.$router.push("/regist");
+            toRegistPage: function () {
+                this.$router.push("/regist");
             },
             checkCapslock({shiftKey, key} = {}) {
                 if (key && key.length === 1) {
@@ -196,8 +196,12 @@
                                 this.$router.push({path: this.redirect || '/', query: this.otherQuery})
                                 this.loading = false
                             })
-                            .catch(() => {
+                            .catch((error) => {
+                                //这儿和登录处理不一样,登录status返回的null,不会走拦截器的if,这儿返回的-1,要走,所以在catch中处理
+                                console.log(error);
+                                this.$message({type: "error", message: error.msg});
                                 this.loading = false
+                                return;
                             })
                     } else {
                         console.log('error submit!!')
