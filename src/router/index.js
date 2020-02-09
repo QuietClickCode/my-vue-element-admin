@@ -227,6 +227,18 @@ export const asyncRoutes = [
         ]
     },
     {
+        path: '/文件上传',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/fileupload/index'),
+                name: 'fileupload',
+                meta: {title: '文件上传', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
         path: '/systemloglist',
         component: Layout,
         children: [
