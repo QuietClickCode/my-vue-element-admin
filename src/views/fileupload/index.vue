@@ -16,50 +16,11 @@
             multiple
             :on-remove="handleRemove">
             <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">支持各种类型的文件</div>
+            <div slot="tip" class="el-upload__tip">支持各种类型的文件,最好不要存超过1m的文件,fastDFS适合小文件,大文件用hadoop</div>
         </el-upload>
-        <ol >
+        <ol>
             <li v-for="item in uploadresult">{{item}}</li>
         </ol>
-        <el-input v-model="deleteid"></el-input>
-        <el-button @click="deleteDocument">删除文档</el-button>
-        <el-input v-model="keyword"></el-input>
-        <el-button @click="queryDocument">查询文档</el-button>
-
-
-        <el-table height="430"
-                  :data="result"
-        >
-            <el-table-column
-                prop="id"
-                label="Id" fixed
-                width="100px"
-            ></el-table-column>
-            <el-table-column width="100px"
-                             prop="fileName"
-                             label="文件名"
-            ></el-table-column>
-            <el-table-column width="100px"
-                             prop="filePath"
-                             label="文件路径"
-            ></el-table-column>
-            <el-table-column
-                prop="fileContent"
-                label="文件内容">
-            </el-table-column>
-            <el-table-column width="120px"
-                             prop="fileType"
-                             label="文件类型">
-            </el-table-column>
-            <el-table-column width="150px"
-                             prop="createtime"
-                             label="创建时间">
-            </el-table-column>
-            <el-table-column width="100px"
-                             prop="createuser"
-                             label="创建人">
-            </el-table-column>
-        </el-table>
     </div>
 </template>
 <script>
@@ -70,9 +31,10 @@
         name: 'index',
         data() {
             return {
-                uploadurl:process.env.VUE_APP_BASE_API + "/upload",
-                uploadresult:[],
+                uploadurl: process.env.VUE_APP_BASE_API + "/upload",
+                uploadresult: [],
                 result: [],
+                fileList:[],
                 keyword: "",
                 deleteid: '',
                 imageUrl: '',
@@ -132,7 +94,7 @@
                 console.log(file)
                 console.log(fileList)
                 this.$message(res.msg);
-                this.uploadresult.push(res.msg);
+                this.uploadresult.push(res.url);
             },
             beyondNumber: function () {
 
