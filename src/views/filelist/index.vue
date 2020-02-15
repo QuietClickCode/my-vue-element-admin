@@ -12,42 +12,42 @@
                 <el-table-column
                     prop="id"
                     label="Id" fixed
-                    width="100px"
+                    width="80px"
                 ></el-table-column>
-                <el-table-column width="100px"
+                <el-table-column width="80px"
                                  label="文件名"
                 >
                     <template slot-scope="scope">
                         <span v-html="scope.row.fileName"></span>
                     </template>
                 </el-table-column>
-                <el-table-column width="100px"
+                <el-table-column width="600px"
                                  prop="filePath"
                                  label="文件路径"
                 ></el-table-column>
-               <!-- <el-table-column
-                    label="文件内容">
-                    <template slot-scope="scope">
-                        <span v-html="scope.row.fileContent"></span>
-                    </template>
-                </el-table-column>-->
+                <!-- <el-table-column
+                     label="文件内容">
+                     <template slot-scope="scope">
+                         <span v-html="scope.row.fileContent"></span>
+                     </template>
+                 </el-table-column>-->
                 <el-table-column
-                    width="120px"
+                    width="80px"
                     label="文件大小">
                     <template slot-scope="scope">
                         <span v-html="scope.row.fileSize"></span>
                     </template>
                 </el-table-column>
-                <el-table-column width="120px"
+                <el-table-column width="80px"
                                  prop="fileType"
                                  label="文件类型">
                 </el-table-column>
                 <el-table-column
-                    width="120px"
+                    width="80px"
                     prop="createtime"
                     label="创建时间">
                 </el-table-column>
-                <el-table-column width="100px"
+                <el-table-column width="80px"
                                  prop="createuser"
                                  label="创建人">
                 </el-table-column>
@@ -56,7 +56,6 @@
                     <template slot-scope="scope">
                         <el-button @click="adddetail(scope.row)" type="text" size="small">新增</el-button>
                         <el-button @click="viewdetail(scope.row)" type="text" size="small">查看</el-button>
-                        <el-button @click="updatedetail(scope.row)" type="text" size="small">修改</el-button>
                         <el-button @click="deletedetail(scope.row)" type="text" size="small">删除</el-button>
                     </template>
                 </el-table-column>
@@ -70,6 +69,20 @@
                 >
                 </el-pagination>
             </div>
+            <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%">
+                <span>删除后不可恢复,确认删除?</span>
+                <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="handleClose">确 定</el-button>
+  </span>
+            </el-dialog>
+        </div>
+        <div id="viewfiledetail">
+            <el-input type="textarea" :value="currentRow.fileContent" autosize readonly></el-input>
+            <el-button @click="exit">退出</el-button>
         </div>
     </div>
 </template>
@@ -119,7 +132,7 @@
         }
     }
     export default {
-        name: 'markdownlist',
+        name: 'filelist',
         data() {
             return store
         },
@@ -130,21 +143,21 @@
             this.query()
         },
         methods: {
+            exit:function () {
+                $('#filelist').show()
+                $('#viewfiledetail').hide()
+            },
             handleClose: function () {
-                console.log("dd")
                 var vueThis = this
                 vueThis.dialogVisible = false
+                var filePath = vueThis.currentRow.filePath.substring(vueThis.currentRow.filePath.lastIndexOf("/") + 1);
+                console.log(filePath);
                 request({
-                    url: 'deletemarkdown',
-                    method: 'post',
-                    data: {
-                        'id': vueThis.currentRow.id
-                    }
+                    url: 'deleteFile?id=' + vueThis.currentRow.id + "&filePath=/group1/M00/00/00/" + filePath,
+                    method: 'get',
                 }).then(function (response) {
-                    if (response == 1) {
-                        vueThis.$message('删除成功')
-                        vueThis.query();
-                    }
+                    vueThis.query();
+                    vueThis.$message('删除成功')
                 })
                     .catch(function (error) {
                         console.log(error)
@@ -212,14 +225,14 @@
                 $('#updatemarkdowndetail').hide()
             },
             viewdetail: function (row) {
-                $('#markdownlist').hide()
-                $('#viewmarkdowndetail').show()
-                this.viewmarkdowndetailcontent = row.content
-                this.viewmarkdowndetailtitle = row.title
+                $('#filelist').hide()
+                $('#viewfiledetail').show()
+                this.currentRow = row;
+
             },
             adddetail: function (row) {
                 this.$router.push({
-                    path: '/markdown/index'
+                    path: '/fileupload/index'
                 })
             },
             deletedetail: function (row) {
@@ -276,39 +289,6 @@
                     .catch(function (error) {
                         console.log(error)
                     })
-                /*axios({
-                    url:process.env.VUE_APP_BASE_API+'/queryMarkdownList',
-                    method: 'post',
-                    data: vueThis.queryForm,
-                })
-                    .then(function (response) {
-                        vueThis.items = response.data
-                    })
-                    .catch(function (error) {
-                        console.log('--------------------')
-                        console.log(error)
-                    })*/
-                request({
-                    url: 'queryMarkdownListCount',
-                    method: 'post',
-                    data: vueThis.queryForm,
-                }).then(function (response) {
-                    vueThis.length = response
-                })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
-                /*axios({
-                    url: process.env.VUE_APP_BASE_API+'/queryMarkdownListCount',
-                    method: 'post',
-                    data: vueThis.queryForm,
-                })
-                    .then(function (response) {
-                        vueThis.length = response.data
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })*/
             }
 
         }

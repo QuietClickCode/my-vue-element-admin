@@ -47,7 +47,7 @@
             }
         },
         created: function () {
-            this.query()
+            //this.query()
         },
         methods: {
             queryDocument: function () {
