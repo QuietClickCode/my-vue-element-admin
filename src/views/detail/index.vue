@@ -55,7 +55,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'post',
-                url: 'https://114.55.94.186'+'/detaillist',
+                url: process.env.VUE_APP_BASE_API+'/detaillist',
                 data: JSON.stringify({
                     'content': vueThis.keyword.substring(1)
                 }),

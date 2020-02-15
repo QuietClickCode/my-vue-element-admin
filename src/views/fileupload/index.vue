@@ -11,7 +11,7 @@
             :headers="header"
             :on-exceed="beyondNumber"
             :on-success="handleAvatarSuccess"
-            action="https://114.55.94.186/uploadImg"
+            action="http://114.55.94.186/uploadImg"
             :file-list="fileList"
             multiple
             :on-remove="handleRemove">

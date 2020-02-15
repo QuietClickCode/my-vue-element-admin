@@ -212,7 +212,7 @@
                         console.log(error)
                     })
                 /*axios({
-                    url:'https://114.55.94.186'+ '/deletemarkdown',
+                    url:process.env.VUE_APP_BASE_API+ '/deletemarkdown',
                     method: 'post',
                     data: {
                         'id': vueThis.currentRow.id
