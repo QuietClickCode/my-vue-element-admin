@@ -31,10 +31,13 @@
         name: 'index',
         data() {
             return {
-                uploadurl: process.env.VUE_APP_BASE_API + "/upload",
+                //上传到服务器
+                //uploadurl: process.env.VUE_APP_BASE_API + "/upload",
+                //上传到本地
+                uploadurl: process.env.VUE_APP_BASE_API + "/uploadlocal",
                 uploadresult: [],
                 result: [],
-                fileList:[],
+                fileList: [],
                 keyword: "",
                 deleteid: '',
                 imageUrl: '',
