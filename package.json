@@ -15,7 +15,6 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "new": "plop"
   },
-
   "lint-staged": {
     "src/**/*.{js,vue}": [
       "eslint --fix",
@@ -48,6 +47,7 @@
     "element-ui": "2.13.0",
     "file-saver": "2.0.1",
     "fuse.js": "3.4.4",
+    "hzqing-vue-timeline": "^1.0.3",
     "js-cookie": "2.2.0",
     "jsonlint": "1.6.3",
     "jszip": "3.2.1",

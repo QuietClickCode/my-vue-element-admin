@@ -21,6 +21,12 @@ import * as filters from './filters' // global filters
 import ElementUI from 'element-ui' //element-ui的全部组件
 import 'element-ui/lib/theme-chalk/index.css'//element-ui的css
 Vue.use(ElementUI) //使用elementUI
+// 全局注册
+import hzqingVueTimeline from 'hzqing-vue-timeline'
+Vue.use(hzqingVueTimeline)
+// Echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

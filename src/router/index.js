@@ -136,6 +136,88 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
     {
+        path: '/Echarts',
+        component: Layout,
+        redirect: '/Echarts/page',
+        alwaysShow: true, // will always show the root menu
+        name: 'Echarts',
+        meta: {
+            title: 'Echarts',
+            icon: 'lock',
+            roles: ['admin', 'editor'] // you can set roles in root nav
+        },
+        children: [
+            {
+                path: 'page',
+                component: () => import('@/views/Echarts/page'),
+                name: 'PagePermission',
+                meta: {
+                    title: 'Page Permission',
+                    roles: ['admin'] // or you can only set roles in sub nav
+                }
+            },
+            {
+                path: 'directive',
+                component: () => import('@/views/Echarts/directive'),
+                name: 'DirectivePermission',
+                meta: {
+                    title: 'Directive Permission'
+                    // if do not set roles, means: this page does not require permission
+                }
+            },
+            {
+                path: 'role',
+                component: () => import('@/views/Echarts/role'),
+                name: 'RolePermission',
+                meta: {
+                    title: 'Role Permission',
+                    roles: ['admin']
+                }
+            }
+        ]
+    },
+    {
+        path: '/ElementUI',
+        component: Layout,
+        redirect: '/ElementUI/page',
+        alwaysShow: true, // will always show the root menu
+        name: 'ElementUI',
+        meta: {
+            title: 'ElementUI',
+            icon: 'lock',
+            roles: ['admin', 'editor'] // you can set roles in root nav
+        },
+        children: [
+            {
+                path: 'page',
+                component: () => import('@/views/ElementUI/page'),
+                name: 'PagePermission',
+                meta: {
+                    title: 'Page Permission',
+                    roles: ['admin'] // or you can only set roles in sub nav
+                }
+            },
+            {
+                path: 'directive',
+                component: () => import('@/views/ElementUI/directive'),
+                name: 'DirectivePermission',
+                meta: {
+                    title: 'Directive Permission'
+                    // if do not set roles, means: this page does not require permission
+                }
+            },
+            {
+                path: 'role',
+                component: () => import('@/views/ElementUI/role'),
+                name: 'RolePermission',
+                meta: {
+                    title: 'Role Permission',
+                    roles: ['admin']
+                }
+            }
+        ]
+    },
+    {
         path: '/userlist',
         component: Layout,
         children: [
@@ -144,6 +226,31 @@ export const asyncRoutes = [
                 component: () => import('@/views/userlist/index'),
                 name: 'userlist',
                 meta: {title: '用户列表', icon: 'clipboard'}
+            }
+        ]
+    },
+
+    {
+        path: '/demo',
+        component: Layout,
+        children: [
+            {
+                path: 'demo',
+                component: () => import('@/views/demo/index'),
+                name: 'demo',
+                meta: {title: '演示', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
+        path: '/timeline',
+        component: Layout,
+        children: [
+            {
+                path: 'timeline',
+                component: () => import('@/views/timeline/index'),
+                name: 'timeline',
+                meta: {title: '时间轴', icon: 'clipboard'}
             }
         ]
     },
@@ -332,6 +439,7 @@ export const asyncRoutes = [
             }
         ]
     },
+
 
     /** when your routing map is too long, you can split it into small modules **/
     componentsRouter,
