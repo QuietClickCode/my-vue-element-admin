@@ -1,0 +1,327 @@
+<template>
+    <div>
+        <div>测试flex布局</div>
+        <div>
+            style="display: flex; flex-direction: column "
+        </div>
+        <div style="display: flex; flex-direction: column ;background-color: purple">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-direction: column-reverse
+        </div>
+        <div style="display: flex; flex-direction: column-reverse;background-color: green ">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-direction: row "
+        </div>
+        <div style="display: flex; flex-direction: row ;background-color: yellow">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-direction: row-reverse "
+        </div>
+        <div style="display: flex; flex-direction: row-reverse;background-color: blue">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-wrap: nowrap;flex-direction: row ;background-color: yellow;width:20px;"
+        </div>
+        <div style="display: flex;   flex-wrap: nowrap;flex-direction: row ;background-color: yellow;width:20px;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-wrap: wrap;flex-direction: row ;background-color: yellow;width:20px;"
+        </div>
+        <div style="display: flex;   flex-wrap: wrap;flex-direction: row ;background-color: yellow;width:20px;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;width:20px;"
+        </div>
+        <div style="display: flex;   flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;width:20px;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        flex-flow
+        flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+        <div>
+            style="display: flex; justify-content: flex-start;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;"
+        </div>
+        <div
+            style="display: flex; justify-content: flex-start;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; justify-content: flex-end;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;"
+        </div>
+        <div
+            style="display: flex; justify-content: flex-end;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; justify-content: center;flex-wrap: wrap-reverse;flex-direction: row ;background-color:
+            yellow;"
+        </div>
+        <div
+            style="display: flex; justify-content: center;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; justify-content: space-between;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;"
+        </div>
+        <div
+            style="display: flex; justify-content: space-between;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; justify-content: space-around;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;"
+        </div>
+        <div
+            style="display: flex; justify-content: space-around;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-items: flex-start ;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex;  align-items: flex-start ; flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-items: flex-end ;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex;  align-items: flex-end; flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-items: baseline ;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex;  align-items: baseline; flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1<p>df</p></div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-items: stretch ;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex;  align-items: stretch; flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1<p>df</p></div>
+            <div style="background-color: pink">2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-content: flex-start ;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex; align-content: flex-start;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-content: flex-end;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex; align-content: flex-end;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-content: center;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex; align-content: center;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-content: stretch;flex-wrap: wrap-reverse;flex-direction: row
+            ;background-color: yellow;height: 100px"
+        </div>
+        <div
+            style="display: flex; align-content: stretch;  flex-wrap: wrap-reverse;flex-direction: row ;background-color: yellow;height: 100px">
+            <div style="background-color: green">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div>
+            style="display: flex; align-content: space-between;flex-direction: column
+            ;background-color: yellow;height: 200px"
+        </div>
+        <div
+            style="display: flex; align-content: space-between; flex-direction: column;background-color: yellow;height: 200px">
+            <div>
+                <div style="background-color: green">1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+            <div>
+                <div style="background-color: green">1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+
+        </div>
+        <div>
+            style="display: flex; align-content:space-around;flex-direction: column
+            ;background-color: yellow;height: 200px"
+        </div>
+        <div
+            style="display: flex; align-content: space-around; flex-direction: row ;background-color: yellow;height: 500px">
+            <div style="background-color: pink;height: 50px">
+                <div >1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+            <div style="height: 50px">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+            <div style="background-color: pink;height: 50px">
+                <div >1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+            <div style="height: 50px">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import axios from 'axios'
+
+    var store = {
+        article: [],
+        keyword: ''
+
+    }
+    export default {
+        name: 'demo',
+        data() {
+            return store
+        },
+        created: function () {
+            this.query()
+        },
+        methods: {
+            /*highlight: function () {
+                var oBox = document.getElementsByTagName('table')[1]
+                var oContent = oBox.innerHTML
+                var val = this.keyword
+                var findText = oContent.split(val)
+                oBox.innerHTML = findText.join('<span style="color:red;">' + val + '</span> ')
+            },*/
+            query: function () {
+                var vueThis = this
+                axios({
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'post',
+                    url: process.env.VUE_APP_BASE_API + '/detaillist',
+                    data: JSON.stringify({
+                        'content': vueThis.keyword.substring(1)
+                    }),
+                })
+                    .then(function (response) {
+                        vueThis.article = response.data.data
+                        console.log(response.data.data)
+                        vueThis.keyword = response.data.msg
+                        //这儿必须延迟1秒执行,不然空白
+                        /*setTimeout(function () {
+                            vueThis.highlight()
+                        }, 100)*/
+                    })
+                    .catch(function (error) {
+                        console.log(vueThis.items + '-=================')
+                    })
+            }
+        }
+    }
+</script>
+
+<style>
+    /*输入框水平居中*/
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>

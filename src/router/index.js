@@ -243,6 +243,18 @@ export const asyncRoutes = [
         ]
     },
     {
+        path: '/css3',
+        component: Layout,
+        children: [
+            {
+                path: 'css3',
+                component: () => import('@/views/css3/index'),
+                name: 'css3',
+                meta: {title: 'css3', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
         path: '/timeline',
         component: Layout,
         children: [
