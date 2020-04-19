@@ -255,6 +255,66 @@ export const asyncRoutes = [
         ]
     },
     {
+        path: '/svg',
+        component: Layout,
+        children: [
+            {
+                path: 'svg',
+                component: () => import('@/views/svg/index'),
+                name: 'svg',
+                meta: {title: 'svg', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
+        path: '/canvas',
+        component: Layout,
+        children: [
+            {
+                path: 'canvas',
+                component: () => import('@/views/canvas/index'),
+                name: 'canvas',
+                meta: {title: 'canvas', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
+        path: '/three',
+        component: Layout,
+        children: [
+            {
+                path: 'three',
+                component: () => import('@/views/three/index'),
+                name: 'three',
+                meta: {title: 'three', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
+        path: '/animation',
+        component: Layout,
+        children: [
+            {
+                path: 'animation',
+                component: () => import('@/views/animation/index'),
+                name: 'animation',
+                meta: {title: 'animation', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
+        path: '/vue',
+        component: Layout,
+        children: [
+            {
+                path: 'vue',
+                component: () => import('@/views/vue/index'),
+                name: 'vue',
+                meta: {title: 'vue', icon: 'clipboard'}
+            }
+        ]
+    },
+    {
         path: '/timeline',
         component: Layout,
         children: [
