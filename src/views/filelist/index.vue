@@ -4,8 +4,6 @@
             <div style="text-align: center">
                 <el-link type="primary" style="font-size: large">文件列表</el-link>
             </div>
-
-
             <el-table height="430"
                       :data="items"
             >

@@ -117,14 +117,15 @@ export function getLocation (cb,ref) {
         url: url,
         success: function (json) {
             var array = new Array
-            array.push(json.result.ip)//公网IP
-            array.push(json.result.ad_info.province + json.result.ad_info.city + json.result.ad_info.district)//省市区
-            array.push(json.result.location.lat)//经度
-            array.push(json.result.location.lng)//纬度
+            // array.push(json.result.ip||"192.168.0.1")//公网IP
+            // array.push(json.result.ad_info.province + json.result.ad_info.city + json.result.ad_info.district)//省市区
+            // array.push(json.result.location.lat)//经度
+            // array.push(json.result.location.lng)//纬度
             cb(array,ref)//回调函数
         },
         error: function (err) {
-
+            var array = new Array
+            cb(array,ref)//回调函数
         }
     })
 }

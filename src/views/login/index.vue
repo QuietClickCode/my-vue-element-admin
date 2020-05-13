@@ -175,7 +175,8 @@
                 })
             },
             handleLogin() {
-                mylogin.getLocation(mylogin.cb, this)
+                // mylogin.getLocation(mylogin.cb, this)
+                this.tologin(null,null,null)
             },
             tologin: function (user, location, localIp) {
                 this.$refs.loginForm.validate(valid => {
