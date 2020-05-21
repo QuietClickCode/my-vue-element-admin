@@ -32,11 +32,11 @@
         data() {
             return {
                 //上传到服务器
-                //uploadurl: process.env.VUE_APP_BASE_API + "/upload",
+                uploadurl: process.env.VUE_APP_BASE_API + "/upload",
                 //上传到本地
                 //uploadurl: process.env.VUE_APP_BASE_API + "/uploadlocal",
                 //上传到本地缓冲接口
-                uploadurl: process.env.VUE_APP_BASE_API + "/uploadlocalfast",
+                //uploadurl: process.env.VUE_APP_BASE_API + "/uploadlocalfast",
                 uploadresult: [],
                 result: [],
                 fileList: [],
